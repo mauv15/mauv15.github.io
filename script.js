@@ -1,5 +1,5 @@
 const url="https://pokeapi.co/api/v2/pokemon/";
-const contenedor= document.getElementById('pokemon-container');
+const contenedor= document.getElementById('container');
 
 const colores={
     'grass':'#7AC74C',
@@ -34,19 +34,25 @@ const obtenerPokemon = async (numeroPokemon)=>{
 const crearPokemon= (datosPokemon) =>{
     let tipo= datosPokemon.types[0].type.name;
     let color= colores[tipo];
-    let template=`<div class='pokemon-item' '>
-                    <div class="front" style='background-color:${color}; >
-                    <h3>${datosPokemon.name}</h3>
-                    <img class='pokemon-img'
-                    src='${datosPokemon.sprites.front_default}'/>         
-                    <p>Tipo: ${tipo}</p> 
+    let template=`
+                <div class='pokemon-container'>
+                    <div class='card' style='background-color:${color};'>
+                        <div class="front">
+                            <h3>${datosPokemon.name}</h3>
+                            <img class='pokemon-img'
+                            src='${datosPokemon.sprites.front_default}'/>         
+                            <p>Tipo: ${tipo}</p> 
+                        </div>
+                        <div class="back">
+                            <h3>${datosPokemon.name}</h3>
+                            <img class='pokemon-img'
+                            src='${datosPokemon.sprites.back_default}'/> 
+                            <p>Tipo: ${tipo}</p> 
+                            
+                        </div>
                     </div>
-                    <div class="back">
-                    <h3>${datosPokemon.name}</h3>
-                    src='${datosPokemon.sprites.front_default}'/> 
-                    <p>Tipo: ${tipo}</p> 
-                    </div>
-                    </div>`;
+                </div>
+            `;
     let div= document.createElement('div'); 
     div.innerHTML = template;
     // contenedor.innerHTML = "";
